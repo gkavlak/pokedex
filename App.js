@@ -29,7 +29,11 @@ export default function App() {
               justifyContent: "center",
               gap: 16,
             }}
-          >
+          >       
+           <Image
+              style={{ width: 64, height: 64 }}
+              source={{ uri: `${BASE_IMAGE_URL}/${item.pokemonId}.png` }}
+            />
             
             <Text style={{ fontSize: 20, fontWeight: "bold" }}>
               {item.name}
