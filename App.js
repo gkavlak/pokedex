@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, SafeAreaView, StyleSheet, Text, View , Image} from 'react-native';
 
  const BASE_URL ="https://my-json-server.typicode.com/gkavlak/pokedex";
  const BASE_IMAGE_URL =
@@ -15,7 +15,7 @@ export default function App() {
     .then(data =>setPokemons(data)); 
 
   }, []);
-  
+  console.log(pokemons);
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
