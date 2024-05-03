@@ -30,8 +30,7 @@ export default function App() {
               gap: 16,
             }}
           >
-           
-
+            
             <Text style={{ fontSize: 20, fontWeight: "bold" }}>
               {item.name}
             </Text>
