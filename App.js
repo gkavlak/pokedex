@@ -1,55 +1,50 @@
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import HomeScreen from './HomeScreen'
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Entypo } from '@expo/vector-icons';
+import { FlatList, SafeAreaView, Image,TouchableOpacity} from 'react-native';
+import Settings from './SettingsScreen';
+import { Ionicons } from '@expo/vector-icons';
 
-// @ts-nocheck
-import { StatusBar } from 'expo-status-bar';
-import { useEffect, useState } from 'react';
-import { FlatList, SafeAreaView, StyleSheet, Text, View , Image} from 'react-native';
+const Tab = createBottomTabNavigator();
 
- const BASE_URL ="https://my-json-server.typicode.com/gkavlak/pokedex";
- const BASE_IMAGE_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home";
-
-export default function App() {
-  const [pokemons, setPokemons] = useState([]);
-  useEffect(() => {
-    fetch(`${BASE_URL}/pokemons`)
-    .then(res => res.json())
-    .then(data =>setPokemons(data)); 
-
-  }, []);
+const App = () => {
   
-  return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-      data={pokemons}
-      keyExtractor={(item) => item.id.toString()}
-      renderItem={({ item }) => (
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 16,
-            }}
-          >       
-            <Image
-              style={{ width: 64, height: 64 }}
-              source={{ uri: `${BASE_IMAGE_URL}/${item.pokemonId}.png` }}
-            />
-            
-            <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-              {item.name}
-            </Text>
-          </View>
-        )}
+    return (
+      <NavigationContainer>
+      <Tab.Navigator>
+      <Tab.Screen 
+      name="Home" component={HomeScreen}
+      options={{
+        tabBarLabel : "AnaSayfa",
+         tabBarIcon: ({color,size}) =>{
+          return <Entypo name="home" size={size} color={color} />;
+        }
+      }
+        
+      }     
       />
-    </SafeAreaView>
-  );
+      <Tab.Screen name="Settings" component={Settings}
+       options={{
+        tabBarLabel : "AYARLAR",
+         tabBarIcon: ({color,size}) =>{
+          return <Ionicons name="settings" size={size} color={color} />;
+        }
+      }
+        
+      }
+
+      />
+    </Tab.Navigator>
+      </NavigationContainer>
+    
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  
+  
+export default App
+
+const styles = StyleSheet.create({})
